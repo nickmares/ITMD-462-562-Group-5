@@ -1,0 +1,10 @@
+extends layout.pug
+
+block content
+  h6.mt-5= "Weight:" + review.weight
+  h6.mt-5= "Height:" + review.height
+  h6.mt-5= "BMI:" + review.bmi
+ 
+  form(action='/person-health-situation/' + review.id + '/delete' method="POST")
+      button.btn.btn-danger(type='submit') Delete
+  a.btn.btn-primary(href='/person-health-situation/' + review.id + '/update' style='margin-left: 25px') Update

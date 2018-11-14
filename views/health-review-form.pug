@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+  h1.mt-5= Health
+  form(method="POST")
+    .form-group
+      label(for='weight') Weight(lbs)
+      input#name.form-control(type='number', placeholder='Enter weight', name="weight", value=review.weight)
+    .form-group
+      label(for='height') Height(in)
+      input#author.form-control(type='number', placeholder='Enter height', name="height", value=review.height)
+    button.btn.btn-primary(type='submit') Calculate
+    

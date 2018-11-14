@@ -1,0 +1,18 @@
+extends layout.pug
+
+block content
+  h1.mt-5 Health
+   a.btn.btn-primary(href='./person-health-situation/new' style='margin-left: 25px') New
+  table.table
+    thead
+      tr
+        th(scope='col') Weight
+        th(scope='col') Height
+        th(scope='col') BMI
+    tbody
+      each review in reviews
+        tr
+          td
+           a(href='/person-health-situation/'+ review.id)= review.weight
+          td= review.height
+          td= review.bmi 
