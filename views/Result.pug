@@ -1,0 +1,17 @@
+extends layout.pug
+
+block content
+  h1.mt-5 Results
+  table.table
+    thead
+      tr
+        th(scope='col') Weight
+        th(scope='col') Height
+        th(scope='col') BMI
+    tbody
+      each review in reviews
+        tr
+          td
+           a(href='/person-health-situation/'+ review.id)= review.weight
+          td= review.height
+          td= review.bmi 
