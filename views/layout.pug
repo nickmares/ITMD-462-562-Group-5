@@ -4,6 +4,7 @@ html
   body
     header
       nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+        a.navbar-brand(href='/auth/login') Login
         a.navbar-brand(href='/') Home
         a.navbar-brand(href='/person-health-situation/new') New
         a.navbar-brand(href='/Result') Result
@@ -11,7 +12,7 @@ html
           span.navbar-toggler-icon
     main.container(role='main')
       block content
-
+    br
     footer.footer
       .container
         span.text-muted Copyright 2018.

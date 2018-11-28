@@ -2,16 +2,36 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const authRoutes = require('./routes/auth-routes')
+const profileRoutes = require('./routes/profile-routes')
+const passportSetup= require('./config/passport-setup')
+const keys = require('./config/keys')
+const cookieSession = require('cookie-session')
+const passport = require('passport')
+
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/body_info');
 var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID
+
+//initialize passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.set('view engine', 'pug')
 app.set('views', __dirname + '/views');
+//setup routes
+app.use('/auth', authRoutes)
+app.use('/profile', profileRoutes)
+
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [keys.session.cookieKey]
+}))
+
 
 var body_infoSchema = new mongoose.Schema({
   weight: { type: Number, required: true },
@@ -25,7 +45,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 
 db.once('open', function(){
-  
+
   app.get('/', (req, res) =>{
     body_info.find({}, function(err, review){
       if (err) {
@@ -36,7 +56,7 @@ db.once('open', function(){
       }
     });
   })
-  
+
   app.get('/Result', (req, res) =>{
     body_info.find({}, function(err, review){
       if (err) {
@@ -51,7 +71,7 @@ db.once('open', function(){
   app.get('/person-health-situation/new', (req, res) => {
     res.render('health-review-form', { title: "New Body Information", review: {} })
   });
-  
+
   app.get('/person-health-situation/:id/update', (req, res) => {
     let id = ObjectID.createFromHexString(req.params.id)
 
@@ -75,7 +95,7 @@ db.once('open', function(){
     var w = newReview.weight;
     var h = newReview.height;
     newReview.bmi = (703 * w) / (h * h);
-   
+
     newReview.save(function(err, savedReview){
       if (err) {
         console.log(err)
@@ -88,7 +108,7 @@ db.once('open', function(){
 
   app.get('/person-health-situation/:id', (req, res) => {
     let id = ObjectID.createFromHexString(req.params.id)
-    
+
     body_info.findById({"_id": id}, function(err, review){
       if (err) {
         console.log(err)
@@ -102,7 +122,7 @@ db.once('open', function(){
       }
     });
   });
-   
+
   app.post('/person-health-situation/:id/update', function(req, res, next) {
     let id = ObjectID.createFromHexString(req.params.id)
 
@@ -123,11 +143,11 @@ db.once('open', function(){
     });
   });
 
-  
+
 
   app.post('/api/person-health-situation', (req, res) => {
     let newReview = new body_info(req.body)
-    
+
     newReview.save(function(err, savedReview){
       if (err) {
         console.log(err)
@@ -139,7 +159,7 @@ db.once('open', function(){
   });
 
   app.get('/api/person-health-situation', (req, res) => {
-    
+
     body_info.find({}, function(err, reviews){
       if (err) {
         console.log(err)
@@ -152,7 +172,7 @@ db.once('open', function(){
 
   app.get('/api/person-health-situation/:id', (req, res) => {
     let id = ObjectID.createFromHexString(req.params.id)
-    
+
     body_info.find({"_id": id}, function(err, review){
       if (err) {
         console.log(err)
@@ -181,10 +201,10 @@ db.once('open', function(){
         }
     });
   });
-  
+
   app.delete('/api/person-health-situation/:id', (req, res) => {
     let id = ObjectID.createFromHexString(req.params.id)
-    
+
     body_info.deleteOne({"_id": id}, function(err) {
       if (err) {
         console.log(err)

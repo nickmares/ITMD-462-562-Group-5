@@ -1,7 +1,7 @@
 {
   "name": "book",
   "version": "1.0.0",
-  "description": "",
+  "description": "Repository for Group 5 Final Project",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,9 +9,20 @@
   "author": "tom",
   "license": "MIT",
   "dependencies": {
+    "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.4",
-    "mongodb": "^3.1.8",
-    "mongoose": "^5.3.9",
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.3.13",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
     "pug": "^2.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tn5865/ITMD-462-562-Group-5.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tn5865/ITMD-462-562-Group-5/issues"
+  },
+  "homepage": "https://github.com/tn5865/ITMD-462-562-Group-5#readme"
 }
