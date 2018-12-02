@@ -8,6 +8,7 @@ const passportSetup= require('./config/passport-setup')
 const keys = require('./config/keys')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
+const GoogleMapsAPI = require('googlemaps');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/body_info');
@@ -67,6 +68,17 @@ db.once('open', function(){
       }
     });
   })
+
+  app.get('/gymfinder', (req, res) => {
+    body_info.find({}, function(err, review){
+      if (err) {
+        console.log(err)
+        res.render('error', {})
+      } else {
+        res.render('map', {});
+      }
+    });
+  });
 
   app.get('/person-health-situation/new', (req, res) => {
     res.render('health-review-form', { title: "New Body Information", review: {} })

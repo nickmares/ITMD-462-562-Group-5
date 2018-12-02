@@ -1,0 +1,79 @@
+extends maplayout.pug
+
+block content
+  h1#h1 Gym Finder
+  #map
+  script.
+    //global variables
+    var map;
+    var infowindow;
+    var request;
+    var service;
+    var markers = [];
+    function initMap() {
+    if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    map.setCenter(initialLocation);
+    //add marker on user's location
+    var marker = new google.maps.Marker({
+    position:(initialLocation),
+    map:map,
+    icon: 'https://img.icons8.com/color/50/000000/cottage.png'
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent('<strong>' + "YOUR LOCATION" + '</strong>');
+    infowindow.open(map, this);
+    });
+    });
+    }
+    //new map
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat:41.8781, lng:-87.6298},
+    zoom: 13
+    });
+    request = {
+    location: {lat:41.8781, lng:-87.6298},
+    radius: 8047,
+    types: ['gym']
+    };
+    infowindow = new google.maps.InfoWindow();
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+    google.maps.event.addListener(map, 'click', function(event) {
+    map.setCenter(event.latlng)
+    clearResults(markers)
+    request = {
+    location: event.latLng,
+    radius: 2000,
+    types: ['gym']
+    };
+    service.nearbySearch(request, callback);
+    });
+    };//end of initMap()
+    function callback(results, status) {
+    if(status == google.maps.places.PlacesServiceStatus.OK){
+    for (var i = 0; i < results.length; i++){
+    markers.push(createMarker(results[i]));
+    }
+    }
+    };//end of callback()
+    function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location,
+    icon: 'https://cdn0.iconfinder.com/data/icons/sports-59/512/Weight-24.png'
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent('<strong>' + place.name + '</strong>');
+    infowindow.open(map, this);
+    });
+    return marker;
+    };//end of createMarker()
+    function clearResults(markers) {
+    for (var m in markers) {
+    markers[m].setMap(null)
+    }
+    markers = []
+    };//end of clearResults()
