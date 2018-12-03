@@ -4,10 +4,9 @@ html
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
-    title My Google Map
     style.
       #map {
-      height: 620px;
+      height: 630px;
       width: 100%;
       margin: auto;
       }
@@ -25,12 +24,12 @@ html
       }
   body
     header
-      nav.navbar.navbar-expand-md.navbar-dark.bg-dark
-        a.navbar-brand(href='/auth/login') Login
-        a.navbar-brand(href='/') Home
-        a.navbar-brand(href='/person-health-situation/new') New
-        a.navbar-brand(href='/Result') Result
-        a.navbar-brand(href='/gymfinder') Gym Finder
+      nav.navbar.navbar-expand-md.navbar-dark.bg-primary
+        a#logout.navbar-brand(href='/') Logout-
+        a.navbar-brand(href='/profile') Main Page-
+        a.navbar-brand(href='/person-health-situation/new') New Data Entry-
+        a.navbar-brand(href='/Result') Result-
+        a.navbar-brand(href='/gymfinder') Gym Finder-
         button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarCollapse', aria-controls='navbarCollapse', aria-expanded='false', aria-label='Toggle navigation')
           span.navbar-toggler-icon
     main.container(role='main')
@@ -39,6 +38,8 @@ html
     footer.footer
       .container
         span.text-muted Copyright 2018.
+        br
+        span.text-muted ITMD-462/562 Group 5.
 
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyD3XhfeSWMDK7TriuYFwGldnY0eHf2-poA&libraries=places&callback=initMap', async='', defer='')
     script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')

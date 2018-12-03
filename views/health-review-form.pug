@@ -1,7 +1,7 @@
 extends layout.pug
 
 block content
-  h1.mt-5 New Entry
+  h1.mt-4 New Entry
   br
   form(method="POST")
     .form-group
@@ -11,4 +11,10 @@ block content
       label(for='height') Height(in)
       input#author.form-control(type='number', placeholder='Enter your height.', name="height", value=review.height)
     br
-    button.btn.btn-primary(type='submit') Calculate BMI Now!
+    button.btn.btn-success(type='submit') Calculate BMI Now!
+  script.
+    var logout = document.getElementById("logout");
+    function logoutAlert() {
+    alert("You are logging out now. Come back again!");
+    };
+    logout.addEventListener("click", logoutAlert);

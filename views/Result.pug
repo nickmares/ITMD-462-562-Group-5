@@ -1,7 +1,11 @@
-extends layout.pug
+extends resultlayout.pug
 
 block content
-  h1.mt-5 Results
+  h1.mt-4 Results.
+  li If your BMI is less than 18.5, you are within the underweight range.
+  li If your BMI is 18.5 to 24.9, you are within the normal or healthy weight range.
+  li If your BMI is 25.0 to 29.9, you are within the overweight range.
+  li If your BMI is 30.0 or higher, you are within the obese range.
   br
   table.table
     thead
@@ -13,6 +17,12 @@ block content
       each review in reviews
         tr
           td
-           a(href='/person-health-situation/'+ review.id)= review.weight
-          td= review.height
-          td= review.bmi
+           a.text-danger(href='/person-health-situation/'+ review.id)= review.weight
+          td.text-secondary= review.height
+          td.text-secondary= review.bmi
+  script.
+   var logout = document.getElementById("logout");
+   function logoutAlert() {
+   alert("You are logging out now. Come back again!");
+   };
+   logout.addEventListener("click", logoutAlert);

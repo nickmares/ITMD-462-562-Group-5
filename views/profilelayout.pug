@@ -25,11 +25,12 @@ html
       text-align: center;
   body
     header
-      nav.navbar.navbar-expand-md.navbar-dark.bg-dark
-        a.navbar-brand(href='/') Logout
-        a.navbar-brand(href='/person-health-situation/new') New Data Enter
-        a.navbar-brand(href='/Result') Result
-        a.navbar-brand(href='/gymfinder') Gym Finder
+      nav.navbar.navbar-expand-md.navbar-dark.bg-primary
+        a#logout.navbar-brand(href='/') Logout-
+        a.navbar-brand(href='/profile') Main Page-
+        a.navbar-brand(href='/person-health-situation/new') New Data Entry-
+        a.navbar-brand(href='/Result') Result-
+        a.navbar-brand(href='/gymfinder') Gym Finder-
         button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarCollapse', aria-controls='navbarCollapse', aria-expanded='false', aria-label='Toggle navigation')
           span.navbar-toggler-icon
     main.container(role='main')
@@ -38,6 +39,8 @@ html
     footer.footer
       .container
         span.text-muted Copyright 2018.
+        br
+        span.text-muted ITMD-462/562 Group 5.
 
     script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')

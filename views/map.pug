@@ -1,13 +1,18 @@
 extends maplayout.pug
 
 block content
-  h1#h1 Gym Finder: Instructions.
+  h1#h1.mt-4 Gym Finder.
   li Click and hold left mouse click to drag the map.
   li Left mouse click anywhere on the map to show the nearest gyms!
   li Use the scroll wheel to zoom in or out of the map.
   li Left mouse click on the dumbbells to get the name of the gym!
   #map
   script.
+    var logout = document.getElementById("logout");
+    function logoutAlert() {
+    alert("You are logging out now. Come back again!");
+    };
+    logout.addEventListener("click", logoutAlert);
     //global variables
     var map;
     var infowindow;
