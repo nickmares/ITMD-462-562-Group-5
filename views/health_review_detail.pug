@@ -1,10 +1,11 @@
 extends layout.pug
 
 block content
-  h6.mt-5= "Weight:" + review.weight
-  h6.mt-5= "Height:" + review.height
-  h6.mt-5= "BMI:" + review.bmi
- 
+  h1.mt-5 With the weight and height you gave, your BMI is:
+  h3.mt-5= "Weight:" + review.weight
+  h3.mt-5= "Height:" + review.height
+  h3.mt-5= "BMI:" + review.bmi
+  br
   form(action='/person-health-situation/' + review.id + '/delete' method="POST")
-      button.btn.btn-danger(type='submit') Delete
-  a.btn.btn-primary(href='/person-health-situation/' + review.id + '/update' style='margin-left: 25px') Update
+      button.btn.btn-danger(type='submit') Delete Entry.
+      a.btn.btn-primary(href='/person-health-situation/' + review.id + '/update' style='margin-left: 25px') Update Entry.

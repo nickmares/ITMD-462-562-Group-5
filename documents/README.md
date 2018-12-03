@@ -1,4 +1,4 @@
-#All documents pertaining to this project will be found in this folder.
+# All documents pertaining to this project will be found in this folder.
 
 ## Run these installations before hand:
 
